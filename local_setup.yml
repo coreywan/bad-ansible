@@ -1,0 +1,5 @@
+- hosts: localhost
+  gather_facts: false
+  vars:
+    USER: "{{ lookup('file', '_USER') }}"
+  roles: [local]
