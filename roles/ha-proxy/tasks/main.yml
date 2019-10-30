@@ -3,12 +3,12 @@
 - name: http
   package:
     name: httpie
-    state: latest
+    state: present
 
 - name: install HAProxy
   yum:
     name: haproxy
-    state: latest
+    state: present
 
 - name: enable HAProxy
   service:
