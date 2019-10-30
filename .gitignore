@@ -4,3 +4,5 @@
 */open_three-tier-app.repo
 _USER
 _GUID
+ansible.cfg
+ssh-laptop.cfg
