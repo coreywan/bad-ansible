@@ -4,7 +4,16 @@
   yum:
     name: postgresql-server
     state: present
-  notify: [Initialize DB]
+  register: pg_install_task
+
+- name: Check if PostgreSQL database is initialized.
+  stat:
+    path: "{{ pg_data_dir }}/PG_VERSION"
+  register: pg_dir_version
+
+- name: Initialize DB  # Not a Handler because the next task fails if this command is not ran
+  shell: postgresql-setup initdb
+  when: pg_dir_version.stat.exists == False
 
 - name: enable apache at boot
   service:
