@@ -13,7 +13,8 @@
 
 - name: Initialize DB  # Not a Handler because the next task fails if this command is not ran
   shell: postgresql-setup initdb
-  when: pg_dir_version.stat.exists == False
+  when: not pg_dir_version.stat.exists
+  tags: [skip_ansible_lint]
 
 - name: enable apache at boot
   service:
