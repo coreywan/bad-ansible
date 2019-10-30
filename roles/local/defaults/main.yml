@@ -1,0 +1,4 @@
+---
+# defaults file for local
+local_bastion_rsa_id: "~/.ssh/id_rsa"
+remote_rsa_id: "~/.ssh/{{ GUID }}key.pem"

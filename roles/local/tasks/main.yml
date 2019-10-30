@@ -1,0 +1,25 @@
+---
+# tasks file for local
+- name: Setup local ssh config file
+  template:
+    src: ssh-laptop.cfg.j2
+    dest: "{{ playbook_dir }}/ssh-laptop.cfg"
+
+- name: Setup ansible config file
+  template:
+    src: ansible.cfg.j2
+    dest: "{{ playbook_dir }}/ansible.cfg"
+
+- name: Get SSH Key file from bastion
+  fetch:
+    src: "/root/.ssh/{{ GUID }}key.pem"
+    dest: "{{ remote_rsa_id }}"
+    flat: true
+  delegate_to: bastion
+  become: true
+
+- name: Set Permissions
+  file:
+    path: "{{ remote_rsa_id }}"
+    state: file
+    mode: '600'

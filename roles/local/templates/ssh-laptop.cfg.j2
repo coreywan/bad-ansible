@@ -1,0 +1,20 @@
+Host bastion
+  Hostname bastion.{{ GUID }}.example.opentlc.com
+  User {{ USER }}
+  ForwardAgent yes
+
+Host *.internal
+  User ec2-user
+  ProxyJump bastion
+
+Host *
+  ControlMaster auto
+  ControlPath /tmp/%h-%r
+  ControlPersist 5m
+  StrictHostKeyChecking no
+
+Match User {{ USER }}
+  IdentityFile {{local_bastion_rsa_id}}
+
+Match User ec2-user
+  IdentityFile {{ remote_rsa_id }}

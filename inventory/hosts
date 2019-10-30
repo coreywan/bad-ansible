@@ -1,3 +1,5 @@
+bastion ansible_host=bastion."{{ GUID }}".example.opentlc.com ansible_user="{{ lookup('file', '_USER') }}"
+
 [frontends] 
 frontend1 ansible_host=frontend1."{{ GUID }}".internal
 
@@ -13,5 +15,5 @@ frontends
 apps
 appdbs
 
-[internal:vars]
-GUID="{{ lookup('file', 'GUID') }}"
+[all:vars]
+GUID="{{ lookup('file', '_GUID') }}"
