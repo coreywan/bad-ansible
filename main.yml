@@ -80,13 +80,10 @@
   gather_facts: false
   become: true
   tasks:
-  - name: install progress
-    command: "yum install -y postgresql-server"
-
-  #- name: install postgres
-  #  yum:
-  #    name: postgresql-server
-  #    state: latest
+  - name: install postgres
+    yum:
+      name: postgresql-server
+      state: latest
   - name: enable apache at boot
     service:
       name: postgresql
