@@ -6,14 +6,10 @@
     state: present
   register: pg_install_task
 
-- name: Check if PostgreSQL database is initialized.
-  stat:
-    path: "{{ pg_data_dir }}/PG_VERSION"
-  register: pg_dir_version
-
 - name: Initialize DB  # Not a Handler because the next task fails if this command is not ran
   shell: postgresql-setup initdb
-  when: not pg_dir_version.stat.exists
+  args:
+    creates: "{{ pg_data_dir }}/PG_VERSION"
   tags: [skip_ansible_lint]
 
 - name: enable apache at boot
