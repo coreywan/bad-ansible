@@ -1,0 +1,9 @@
+[frontends]
+frontend1.9ecb.internal ansible_ssh_host=frontend1.9ecb.example.opentlc.com
+
+[apps]
+app1.9ecb.internal ansible_ssh_host=app1.9ecb.example.opentlc.com
+app2.9ecb.internal ansible_ssh_host=app2.9ecb.example.opentlc.com
+
+[appdbs]
+appdb1.9ecb.internal ansible_ssh_host=appdb1.9ecb.example.opentlc.com
