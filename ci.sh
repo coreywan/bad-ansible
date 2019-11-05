@@ -1,5 +1,5 @@
 #! /bin/sh
-export GUID=$(cat ./GUID)
+export GUID=$(cat ./_GUID)
 echo "GUID is Set to $GUID"
 
 ansible-playbook --syntax-check -i hosts main.yml
